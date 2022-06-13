@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "OrangeBot": {
+      "commandName": "Project",
+      "workingDirectory": "D:\\Program\\Git\\orangebot"
+    }
+  }
+}
