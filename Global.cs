@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace OrangeBot {
     internal class Global {
         internal const string iniPath = "set.ini";
+        internal static string forecastKey;
     }
 }

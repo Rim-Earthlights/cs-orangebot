@@ -14,8 +14,8 @@ namespace OrangeBot {
         /// <summary>
         /// 設定情報を読み込み、配列に格納します。
         /// </summary>
-        public Configure() {
-            var lines = File.ReadAllLines(Global.iniPath);
+        public Configure(string dir) {
+            var lines = File.ReadAllLines(dir);
             var data = lines.Select(x => x.Split(new char[] { '=' }, 2));
             Settings = data.ToDictionary(x => x[0], x => x[1]);
         }

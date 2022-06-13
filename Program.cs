@@ -27,9 +27,11 @@ namespace OrangeBot {
             client.Log += Log;
             client.MessageReceived += CommandReceived;
 
-            var config = new Configure();
+            var config = new Configure(Global.iniPath);
+            WebWrapper.cc = new System.Net.CookieContainer();
 
             string token = config.Get("SECRET_KEY");
+            Global.forecastKey = config.Get("FORECAST_KEY");
 
             await commands.AddModulesAsync(Assembly.GetEntryAssembly(), services);
             await client.LoginAsync(TokenType.Bot, token);
