@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Net;
+using Discord;
 
 /**
  *  メッセージ受信時に関する処理
@@ -52,8 +53,14 @@ namespace OrangeBot {
                 result.Add(rnd.Next(diceMax));
             }
 
-            var message = result.Select(x => x.ToString()).Aggregate((a, b) => a + ", " + b);
-            await ReplyAsync(String.Format("[Dice] {0}", message));
+            var roll = result.Select(x => x.ToString()).Aggregate((a, b) => a + ", " + b);
+
+            var embed = new EmbedBuilder();
+            embed.WithTitle("結果一覧");
+            embed.WithDescription(roll);
+
+
+            await ReplyAsync(String.Format("[Dice] {0}面ダイスを{1}回振りました。", diceMax, diceNum), embed: embed.Build());
         }
 
 
@@ -89,7 +96,7 @@ namespace OrangeBot {
         }
 
         /// <summary>
-        /// 天気を出力する
+        /// 天気を出力する(地名指定)
         /// </summary>
         /// <param name="arg">場所</param>
         /// <returns></returns>
@@ -115,6 +122,7 @@ namespace OrangeBot {
             string message = "";
             foreach (var w in wheatherList) {
                 message += String.Format("[{0}] {1}({2})\n", args[0], w.Weather[0].Main, w.Weather[0].Description);
+                message += String.Format(" * 気温: {0:F1}℃ ({1:F1}℃ / {2:F1}℃)\n", w.Main.Temp, w.Main.TempMin, w.Main.TempMax);
             }
             await ReplyAsync(message);
         }

@@ -120,7 +120,8 @@ namespace OrangeBot {
                 message += String.Format("[{0}] {1}({2})\n", w.Name, w.Weather[0].Main, w.Weather[0].Description);
                 message += String.Format(" * 気温: {0:F1}℃ ({1:F1}℃ / {2:F1}℃)\n", w.Main.Temp, w.Main.TempMin, w.Main.TempMax);
             }
-            await client.GetGuild(779256339545325588).GetTextChannel(779256339545325591).SendMessageAsync(message);
+            // TODO: IDの指定方法
+            await client.GetGuild(974941026038976543).GetTextChannel(974941026038976545).SendMessageAsync(message);
         }
 
         private Task Log(LogMessage message) {
