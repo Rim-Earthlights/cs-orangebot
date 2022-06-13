@@ -118,6 +118,5 @@ namespace OrangeBot {
             }
             await ReplyAsync(message);
         }
-
     }
 }
