@@ -54,3 +54,4 @@ D:\Program\Git\orangebot\obj\Debug\net6.0\OrangeBot.dll
 D:\Program\Git\orangebot\obj\Debug\net6.0\ref\OrangeBot.dll
 D:\Program\Git\orangebot\obj\Debug\net6.0\OrangeBot.pdb
 D:\Program\Git\orangebot\obj\Debug\net6.0\OrangeBot.genruntimeconfig.cache
+D:\Program\Git\orangebot\bin\Debug\net6.0\Word2Vec.Net.dll

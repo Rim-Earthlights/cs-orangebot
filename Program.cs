@@ -40,7 +40,7 @@ namespace OrangeBot {
 
                 
                 if (!flags["morning"]) {
-                    if (DateTime.Now.Hour == 6 && DateTime.Now.Minute == 0) {
+                    if (DateTime.Now.Hour == 6 && DateTime.Now.Minute == 30) {
                         flags["morning"] = true;
                         await morning();
                     }
@@ -117,8 +117,35 @@ namespace OrangeBot {
             message += String.Format("{0}の天気だよ\n\n", DateTime.Now.ToString("D"));
 
             foreach (var w in wheatherList) {
+                var deg = "";
+                if (w.Wind.Deg < 23 || w.Wind.Deg > 337) {
+                    deg = "北";
+                }
+                else if (w.Wind.Deg < 68) {
+                    deg = "北東";
+                }
+                else if (w.Wind.Deg < 113) {
+                    deg = "東";
+                }
+                else if (w.Wind.Deg < 158) {
+                    deg = "南東";
+                }
+                else if (w.Wind.Deg < 203) {
+                    deg = "南";
+                }
+                else if (w.Wind.Deg < 248) {
+                    deg = "南西";
+                }
+                else if (w.Wind.Deg < 293) {
+                    deg = "西";
+                }
+                else if (w.Wind.Deg <= 337) {
+                    deg = "北西";
+                }
+
                 message += String.Format("[{0}] {1}({2})\n", w.Name, w.Weather[0].Main, w.Weather[0].Description);
                 message += String.Format(" * 気温: {0:F1}℃ ({1:F1}℃ / {2:F1}℃)\n", w.Main.Temp, w.Main.TempMin, w.Main.TempMax);
+                message += String.Format(" * 風速: {0} / {1:F1}m\n", deg, w.Wind.Speed);
             }
             // TODO: IDの指定方法
             await client.GetGuild(974941026038976543).GetTextChannel(974941026038976545).SendMessageAsync(message);

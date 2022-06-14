@@ -194,6 +194,15 @@
         "runtime": {
           "lib/netcoreapp2.0/_._": {}
         }
+      },
+      "Word2Vec.Net/0.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/Word2Vec.Net.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Word2Vec.Net.dll": {}
+        }
       }
     }
   },
@@ -585,12 +594,26 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Word2Vec.Net/0.3.0": {
+      "sha512": "Be825dedPaezWzaKlC0btrhgTEmnksJb4dx2ate62EAb/ngPObwX0qP4P8tKvadnH8mIjhsFPkJ5fbVM2PMyPw==",
+      "type": "package",
+      "path": "word2vec.net/0.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Word2Vec.Net.XML",
+        "lib/net45/Word2Vec.Net.dll",
+        "word2vec.net.0.3.0.nupkg.sha512",
+        "word2vec.net.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Discord.Net >= 3.7.2",
-      "Microsoft.Extensions.DependencyInjection >= 6.0.0"
+      "Microsoft.Extensions.DependencyInjection >= 6.0.0",
+      "Word2Vec.Net >= 0.3.0"
     ]
   },
   "packageFolders": {
@@ -647,6 +670,10 @@
           "Microsoft.Extensions.DependencyInjection": {
             "target": "Package",
             "version": "[6.0.0, )"
+          },
+          "Word2Vec.Net": {
+            "target": "Package",
+            "version": "[0.3.0, )"
           }
         },
         "imports": [
@@ -667,5 +694,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.105\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "パッケージ 'Word2Vec.Net 0.3.0' はプロジェクトのターゲット フレームワーク 'net6.0' ではなく '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' を使用して復元されました。このパッケージは、使用しているプロジェクトとの完全な互換性がない可能性があります。",
+      "libraryId": "Word2Vec.Net",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }
