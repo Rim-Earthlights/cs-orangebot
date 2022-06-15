@@ -136,10 +136,12 @@ namespace OrangeBot {
                 json.Name = w.Name;
                 wheatherList.Add(json);
             }
+            // 日付を日本基準の表記へ
+            var culture = new System.Globalization.CultureInfo("ja-JP");
 
             string message = "";
             message += String.Format("おはよう！\n");
-            message += String.Format("{0}の天気だよ\n\n", DateTime.Now.ToString("D"));
+            message += String.Format("{0}の天気だよ\n\n", DateTime.Now.ToString("D", culture));
 
             foreach (var w in wheatherList) {
                 var deg = "";
