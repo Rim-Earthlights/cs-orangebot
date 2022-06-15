@@ -90,22 +90,27 @@ namespace OrangeBot {
             // mention command
             if (message.HasMentionPrefix(client.CurrentUser, ref argPos)) {
                 if (message.Content.Contains(client.CurrentUser.Mention.Replace("!", ""))) {
-                    if (!message.Content.Contains("debug")) {
-                        return;
-                    }
-                    string d = "";
-                    foreach (var c in message.Content.Split(new char[] { ' ', '　' })) {
-                        d += c + Environment.NewLine;
-                    }
+                    if (message.Content.Contains("debug")) {
+                        string d = "";
+                        foreach (var c in message.Content.Split(new char[] { ' ', '　' })) {
+                            d += c + Environment.NewLine;
+                        }
 
-                    var embed = new EmbedBuilder();
-                    embed.WithTitle("デバッグ出力");
-                    embed.WithDescription(d);
+                        var embed = new EmbedBuilder();
+                        embed.WithTitle("デバッグ出力");
+                        embed.WithDescription(d);
 
-                    await message.ReplyAsync(
-                        String.Format("[Debug] テスト用だよ～"),
-                        embed: embed.Build()
-                        );
+                        await message.ReplyAsync(
+                            String.Format("[Debug] テスト用だよ～"),
+                            embed: embed.Build()
+                            );
+                    }
+                    if (message.Content.Contains("言語は")) {
+                        await message.ReplyAsync(
+                            String.Format("今動いてる言語は[{0}]だよ～！{1}コードはここで見れるよ！{1}{2}", "C#", Environment.NewLine, @"https://gitlab.com/Rim_EarthLights/cs-orangebot")
+                            );
+                    }
+                    return;
                 }
             }
         }

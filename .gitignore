@@ -1,3 +1,6 @@
 /bin
 /set.ini
 /.vs/OrangeBot/v17/.suo
+/obj/Debug/net6.0/OrangeBot.csproj.AssemblyReference.cache
+/obj/Debug/net6.0/OrangeBot.dll
+/obj/Debug/net6.0/OrangeBot.pdb
