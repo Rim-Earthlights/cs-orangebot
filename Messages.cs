@@ -14,7 +14,7 @@ using Discord;
  *  メッセージ受信時に関する処理
  */
 namespace OrangeBot {
-    public class Messages : ModuleBase {
+    public class Messages : ModuleBase<CommandContext> {
 
         /// <summary>
         /// デバッグ用
@@ -32,8 +32,21 @@ namespace OrangeBot {
         /// <returns></returns>
         [Command("debug")]
         public async Task debug() {
-            string message = "[debug] これは**デバッグ用メッセージ**です 引数:";
-            await ReplyAsync(message);
+            string description = "";
+
+            var user = Context.User;
+            var test = Context.Message.MentionedUserIds;
+
+            if (test.Count == 0){
+                description += "test" + Environment.NewLine;
+            }
+
+            var embed = new EmbedBuilder();
+            embed.WithTitle("デバッグ出力");
+            embed.WithDescription(description);
+
+            string message = String.Format("[debug] **これはデバッグ用メッセージです**");
+            await ReplyAsync(message, embed: embed.Build());
         }
 
         [Command("dice")]
@@ -59,8 +72,10 @@ namespace OrangeBot {
             embed.WithTitle("出目");
             embed.WithDescription(roll);
 
-
-            await ReplyAsync(String.Format("[Dice] {0}面ダイスを{1}回振りました。合計は{2}です。", diceMax, diceNum, result.Sum()), embed: embed.Build());
+            await ReplyAsync(
+                String.Format("[Dice] {0}面ダイスを{1}回振りました。合計は{2}です。", diceMax, diceNum, result.Sum()),
+                embed: embed.Build()
+                );
         }
 
         [Command("luck")]

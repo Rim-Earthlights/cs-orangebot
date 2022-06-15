@@ -71,7 +71,6 @@ namespace OrangeBot {
             if (message == null) {
                 return;
             }
-
             // 発言者がbot, 自身に反応することはしない
             if (message.Author.IsBot) {
                 return;
@@ -79,15 +78,36 @@ namespace OrangeBot {
 
             int argPos = 0;
 
-            if (!(message.HasCharPrefix('.', ref argPos)
-                || message.HasMentionPrefix(client.CurrentUser, ref argPos)
-                )) { return; }
+            // prefix command
+            if (message.HasCharPrefix('.', ref argPos)) {
+                var context = new CommandContext(client, message);
 
-            var context = new CommandContext(client, message);
+                var result = await commands.ExecuteAsync(context, argPos, services);
 
-            var result = await commands.ExecuteAsync(context, argPos, services);
+                if (!result.IsSuccess) { await context.Channel.SendMessageAsync(result.ErrorReason); }
+            }
 
-            if (!result.IsSuccess) { await context.Channel.SendMessageAsync(result.ErrorReason); }
+            // mention command
+            if (message.HasMentionPrefix(client.CurrentUser, ref argPos)) {
+                if (message.Content.Contains(client.CurrentUser.Mention.Replace("!", ""))) {
+                    if (!message.Content.Contains("debug")) {
+                        return;
+                    }
+                    string d = "";
+                    foreach (var c in message.Content.Split(new char[] { ' ', '　' })) {
+                        d += c + Environment.NewLine;
+                    }
+
+                    var embed = new EmbedBuilder();
+                    embed.WithTitle("デバッグ出力");
+                    embed.WithDescription(d);
+
+                    await message.ReplyAsync(
+                        String.Format("[Debug] テスト用だよ～"),
+                        embed: embed.Build()
+                        );
+                }
+            }
         }
 
         /// <summary>
